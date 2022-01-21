@@ -6,8 +6,12 @@
 endmodule*/
 
 module FA1bit(a, b, cin, s, cout);
-    input  a, b, cin;  
-    output  s, cout;
+	logic input  a, b, cin;  
+	logic output  s, cout;
 	
-	assign {cout, s} = a + b + cin; 
+	wire m = a ^ b;
+	wire n = m & cin;
+	wire o = a & b;
+	assign cout = n | o;
+	assign s = m ^ cin;
 endmodule

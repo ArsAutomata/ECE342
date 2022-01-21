@@ -7,145 +7,145 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dW:/ECE342/Lab1/Part1
+dW:/ECE342/Lab1/Part1
 vadder
-Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1642714292
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1642714292
 !i10b 1
 !s100 n:IT52^QbU2VTL_YNk`4O2
 Immgd9f<P`RS]Wn;CC3CVh3
-Z3 VDg1SIo80bB@j0V0VzS_@n1
-Z4 !s105 test_sv_unit
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 !s105 test_sv_unit
 S1
-Z5 dC:/Users/mihik/Documents/ECE342/ECE342/Lab1/Part1
-Z6 w1642714289
-Z7 8test.sv
-Z8 Ftest.sv
+Z4 dC:/Users/mihik/Documents/ECE342/ECE342/Lab1/Part1
+Z5 w1642714289
+Z6 8test.sv
+Z7 Ftest.sv
 L0 1
-Z9 OV;L;10.5b;63
+Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z10 !s108 1642714292.000000
-Z11 !s107 test.sv|
-Z12 !s90 -reportprogress|300|test.sv|
+Z9 !s108 1642714292.000000
+Z10 !s107 test.sv|
+Z11 !s90 -reportprogress|300|test.sv|
 !i113 1
-Z13 tCvgOpt 0
+Z12 tCvgOpt 0
 vFA1bit
-R1
-!s110 1642714569
+R0
+Z13 !s110 1642720901
 !i10b 1
-!s100 [jMdWfaQDK[X5VhG_JFE^2
-I`<PDo]a9OMQEka;2:]R<k2
-R3
+!s100 oo[7e2K=KMP4FlfQ30boF3
+IVO7EL5VK=JRo]co7nh[?41
+R2
 !s105 FA1bit_sv_unit
 S1
-Z14 dC:/Users/mihik/DOcuments/ECE342/ECE342/lab1/part1
-w1642714534
+Z14 dC:/Users/mihik/Documents/ECE342/ECE342/lab1/part1
+w1642720871
 8FA1bit.sv
 FFA1bit.sv
 L0 8
-R9
+R8
 r1
 !s85 0
 31
-!s108 1642714569.000000
-!s107 FA1bit.sv|
-!s90 -reportprogress|300|FA1bit.sv|
+Z15 !s108 1642720901.000000
+Z16 !s107 tb.sv|RCAmanual.sv|RCAgen.sv|FA1bit.sv|
+Z17 !s90 -reportprogress|300|FA1bit.sv|RCAgen.sv|RCAmanual.sv|tb.sv|
 !i113 1
-R13
+R12
 n@f@a1bit
 vRCAgen
-R1
-!s110 1642714580
+R0
+R13
 !i10b 1
 !s100 ;0n[gmaja?Q=jeMNmC2aF0
 I]no[4YcbBJ;i]HKY1]QEg2
-R3
+R2
 !s105 RCAgen_sv_unit
 S1
 R14
-Z15 w1642554965
+w1642554965
 8RCAgen.sv
 FRCAgen.sv
 L0 1
-R9
+R8
 r1
 !s85 0
 31
-!s108 1642714580.000000
-!s107 RCAgen.sv|
-!s90 -reportprogress|300|RCAgen.sv|
+R15
+R16
+R17
 !i113 1
-R13
+R12
 n@r@c@agen
 vRCAmanual
-R1
-!s110 1642538927
+R0
+!s110 1642741388
 !i10b 1
-!s100 ?`igM9a5CzaUMYaHim0Y`1
-IUGa[n3AN>n^QaT:5b3:0K3
-R3
+!s100 ^ggjhT]e1[MFiZ5cK;B860
+IBo@7=GaRRg8M_@DaP`Va`0
+R2
 !s105 RCAmanual_sv_unit
 S1
-R0
-w1642537684
+R14
+w1642741381
 8RCAmanual.sv
 FRCAmanual.sv
 L0 1
-R9
+R8
 r1
 !s85 0
 31
-!s108 1642538927.000000
-!s107 tb.sv|RCAmanual.sv|RCAgen.sv|FA1bit.sv|
-!s90 -reportprogress|300|FA1bit.sv|RCAgen.sv|RCAmanual.sv|tb.sv|
+!s108 1642741388.000000
+!s107 RCAmanual.sv|
+!s90 -reportprogress|300|RCAmanual.sv|
 !i113 1
-R13
+R12
 n@r@c@amanual
 vtb
-R1
-!s110 1642714553
+R0
+!s110 1642740971
 !i10b 1
-!s100 l:Z6e5M8]JfobXcULNH322
-Ii]<1E:fI_lIVMFNW^VR^Y2
-R3
+!s100 eoDJ6`ch4[G=1NhUjm@ZI0
+I_4gV3OEeBWOcKjgBmhOm@1
+R2
 !s105 tb_sv_unit
 S1
 R14
-R15
+w1642721858
 8tb.sv
 Ftb.sv
 L0 3
-R9
+R8
 r1
 !s85 0
 31
-!s108 1642714553.000000
+!s108 1642740971.000000
 !s107 tb.sv|
 !s90 -reportprogress|300|tb.sv|
 !i113 1
-R13
+R12
 vtest
+R0
 R1
-R2
 !i10b 1
 !s100 DTEXHQDbQToF0Z9gigR4a2
 I?T56MD:2MYhU1INV91HSN3
+R2
 R3
-R4
 S1
+R4
 R5
 R6
 R7
-R8
 L0 13
-R9
+R8
 r1
 !s85 0
 31
+R9
 R10
 R11
-R12
 !i113 1
-R13
+R12
