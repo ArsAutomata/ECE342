@@ -33,14 +33,14 @@ Z11 !s90 -reportprogress|300|test.sv|
 Z12 tCvgOpt 0
 vFA1bit
 R0
-Z13 !s110 1642720901
+Z13 !s110 1642779878
 !i10b 1
 !s100 oo[7e2K=KMP4FlfQ30boF3
 IVO7EL5VK=JRo]co7nh[?41
 R2
 !s105 FA1bit_sv_unit
 S1
-Z14 dC:/Users/mihik/Documents/ECE342/ECE342/lab1/part1
+R4
 w1642720871
 8FA1bit.sv
 FFA1bit.sv
@@ -49,9 +49,9 @@ R8
 r1
 !s85 0
 31
-Z15 !s108 1642720901.000000
-Z16 !s107 tb.sv|RCAmanual.sv|RCAgen.sv|FA1bit.sv|
-Z17 !s90 -reportprogress|300|FA1bit.sv|RCAgen.sv|RCAmanual.sv|tb.sv|
+Z14 !s108 1642779878.000000
+Z15 !s107 tb.sv|RCAmanual.sv|RCAgen.sv|FA1bit.sv|
+Z16 !s90 -reportprogress|300|FA1bit.sv|RCAgen.sv|RCAmanual.sv|tb.sv|
 !i113 1
 R12
 n@f@a1bit
@@ -64,7 +64,7 @@ I]no[4YcbBJ;i]HKY1]QEg2
 R2
 !s105 RCAgen_sv_unit
 S1
-R14
+R4
 w1642554965
 8RCAgen.sv
 FRCAgen.sv
@@ -73,22 +73,22 @@ R8
 r1
 !s85 0
 31
+R14
 R15
 R16
-R17
 !i113 1
 R12
 n@r@c@agen
 vRCAmanual
 R0
-!s110 1642741388
+R13
 !i10b 1
 !s100 ^ggjhT]e1[MFiZ5cK;B860
 IBo@7=GaRRg8M_@DaP`Va`0
 R2
 !s105 RCAmanual_sv_unit
 S1
-R14
+R4
 w1642741381
 8RCAmanual.sv
 FRCAmanual.sv
@@ -97,23 +97,23 @@ R8
 r1
 !s85 0
 31
-!s108 1642741388.000000
-!s107 RCAmanual.sv|
-!s90 -reportprogress|300|RCAmanual.sv|
+R14
+R15
+R16
 !i113 1
 R12
 n@r@c@amanual
 vtb
 R0
-!s110 1642740971
+R13
 !i10b 1
-!s100 eoDJ6`ch4[G=1NhUjm@ZI0
-I_4gV3OEeBWOcKjgBmhOm@1
+!s100 l:Z6e5M8]JfobXcULNH322
+Ii]<1E:fI_lIVMFNW^VR^Y2
 R2
 !s105 tb_sv_unit
 S1
-R14
-w1642721858
+R4
+w1642778474
 8tb.sv
 Ftb.sv
 L0 3
@@ -121,9 +121,9 @@ R8
 r1
 !s85 0
 31
-!s108 1642740971.000000
-!s107 tb.sv|
-!s90 -reportprogress|300|tb.sv|
+R14
+R15
+R16
 !i113 1
 R12
 vtest

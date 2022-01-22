@@ -4,7 +4,7 @@ module tb();
 logic [7:0] dut_x, dut_y; 
 logic [8:0] dut_out; 
 
-RCAgen DUT(.x(dut_x), .y(dut_y), .sum(dut_out)); 
+RCAmanual DUT(.x(dut_x), .y(dut_y), .sum(dut_out)); 
 
 initial begin
 	for (integer x = 0; x <256; x++) begin
