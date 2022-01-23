@@ -8,25 +8,25 @@ module elevator
   output [1:0] o_current_floor
 );
   
-  logic dp_up, dp_down, done_moving;
-  
-  controlpath thecontrolpath(
-    .i_clock(i_clock),
-    .i_reset(i_reset),
-    .i_buttons(i_buttons),
-    .o_current_floor(o_current_floor),
-    .i_done(done_moving),
-    .o_dp_up(dp_up),
-    .o_dp_down(dp_down)
-  );
-  
-  datapath thedatapath(
-    .i_clock(i_clock),
-    .i_reset(i_reset),
-    .i_dp_up(dp_up),
-    .i_dp_down(dp_down),
-    .o_done(done_moving)
-  );  
+	  logic dp_up, dp_down, done_moving;
+	  
+	  controlpath thecontrolpath(
+		 .i_clock(i_clock),
+		 .i_reset(i_reset),
+		 .i_buttons(i_buttons),
+		 .o_current_floor(o_current_floor),
+		 .i_done(done_moving),
+		 .o_dp_up(dp_up),
+		 .o_dp_down(dp_down)
+	  );
+	  
+	  datapath thedatapath(
+		 .i_clock(i_clock),
+		 .i_reset(i_reset),
+		 .i_dp_up(dp_up),
+		 .i_dp_down(dp_down),
+		 .o_done(done_moving)
+	  );  
 
 endmodule
 
