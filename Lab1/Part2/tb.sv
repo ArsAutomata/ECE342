@@ -8,9 +8,8 @@ always #10 clk = ~clk;
 logic sreset; 
 logic dut_enable; 
 logic dut_last;
-logic [3:0] dut_val; 
+logic [3:0] dut_val;
 upcount15 DUT(.clk(clk), .sreset(sreset), .o_val(dut_val), .i_enable(dut_enable), .o_last(dut_last));
-
 initial begin 
 
 	//first module
@@ -28,7 +27,7 @@ initial begin
 		$display ("Error! Counter asserted o_last, but o_val was %d, instead of 15.", dut_val);
 		$stop();
 	end
-	
+
 	@(posedge clk);
 	$stop();
 	

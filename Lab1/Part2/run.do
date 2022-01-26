@@ -1,0 +1,13 @@
+vlog *sv; 
+vsim tb; 
+log *;
+add wave *;
+run -all;
+vsim tb12; 
+log *;
+add wave *;
+run -all;
+vsim tb117; 
+log *;
+add wave *;
+run -all;

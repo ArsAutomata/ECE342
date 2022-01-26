@@ -62,7 +62,117 @@ module controlpath (
     o_current_floor = 2'd0;
     
     case(state)
-        // Add code for your FSM here. 
+	
+        //cases for ground floor 
+		S_G: begin
+			o_current_floor = 2'd0;
+			if (i_buttons == 0) begin	
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b0;
+				
+				nextstate = S_G;
+			end
+			else if (i_buttons == 1)begin
+				o_dp_up = 1'b1;
+				o_dp_down = 1'b0;
+				 
+				nextstate = S_1;
+			end
+			else if (i_buttons == 2)begin
+				o_dp_up = 1'b1;
+				o_dp_down = 1'b0;
+				 
+				nextstate = S_1;
+			end
+			else begin
+				o_dp_up = 1'b1;
+				o_dp_down = 1'b0;
+				 
+				nextstate = S_1;
+			end
+		end
+		
+		//cases for first floor
+		S_1: begin
+			o_current_floor = 2'd1;
+			if (i_buttons == 0) begin	
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b1;				 
+				nextstate = S_G;
+			end
+			else if (i_buttons == 1)begin
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b0;				
+				nextstate = S_1;
+			end
+			else if (i_buttons == 2)begin
+				o_dp_up = 1'b1;
+				o_dp_down = 1'b0;				 
+				nextstate = S_2;
+			end
+			else begin
+				o_dp_up = 1'b1;
+				o_dp_down = 1'b0;				 
+				nextstate = S_2;
+			end
+		end
+		
+		//case for second floor 
+		S_2: begin
+			o_current_floor = 2'd2;
+			if (i_buttons == 0) begin	
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b1;				 
+				nextstate = S_1;
+			end
+			else if (i_buttons == 1)begin
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b1;				 
+				nextstate = S_1;
+			end
+			else if (i_buttons == 2)begin
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b0;				
+				nextstate = S_2;
+			end
+			else begin
+				o_dp_up = 1'b1;
+				o_dp_down = 1'b0;				 
+				nextstate = S_3;
+			end
+		end
+		
+		//case for third floor 
+		S_3: begin
+			o_current_floor = 2'd3;
+			if (i_buttons == 0) begin	
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b1;				 
+				nextstate = S_2;
+			end
+			else if (i_buttons == 1)begin
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b1;
+				nextstate = S_2;
+			end
+			else if (i_buttons == 2)begin
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b1;
+				nextstate = S_2;
+			end
+			else begin
+				o_dp_up = 1'b0;
+				o_dp_down = 1'b0;				
+				nextstate = S_3;
+			end
+		end 
+		
+		default: begin
+			o_current_floor = 2'd0;
+			o_dp_up = 1'b0;
+			o_dp_down = 1'b0;			 
+			nextstate = S_G;	
+		end
     endcase
   end
   
@@ -87,9 +197,9 @@ module datapath (
   
   always_ff @ (posedge i_clock or posedge i_reset) begin
     if ((i_reset) || (i_dp_up) || (i_dp_down))
-      count <= 3d'0;
+      count <= 3'd0;
     else
-      count <= count + 3d'1;
+      count <= count + 3'd1;
   end
   
   assign o_done = (count == 3'd5);
