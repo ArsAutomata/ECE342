@@ -57,7 +57,7 @@ module elevator_tb();
 		for (integer y = 0; y<4; y++) begin 
 			if(y != x)begin;
 				move_floor(y);
-				move_floor(x);
+				move_floor(x)
 			end
 		end
 	end
