@@ -61,8 +61,8 @@ module elevator_tb();
 			end
 		end
 	end
-     
-    //move_floor(2'd1);
+     move_floor(2'd3);
+    move_floor(2'd0);
 
     // Add more test cases here. 
 
