@@ -12,12 +12,7 @@ module mult_csm
 
 	// Write your nested generate for loops here.
 	
-	genvar i; 
-	generate 
-		for (i = 0; i < 8; i++) begin : csms
-			fa fa_inst ( .x(x[i]), .y(y[i]), .cin(cin[i]), .s(sum[i]), .cout(cin[i+1]) );
-		end
-	endgenerate 
+	
 
 	// Have a RCA to add the numbers in columns 8 through 15 of 
 	// the final row of the multiplier to get out[16:8].
