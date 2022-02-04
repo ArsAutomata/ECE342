@@ -9,37 +9,96 @@ module wallace_mult #(width=8) (
 	wire [15:0] c_lev[0:3][1:2];
 	
 	// Rest of your code goes here.
-		logic [15:0] i[0:7];
+		wire [15:0] i[0:7];
 		
 		
-		for(integer n = 0; n < 8; n++)begin
-			if(y[n] == 1)begin
-				i[n] = x << n; //<< is left shift
+		
+		
+		genvar n;
+		generate
+			for(n = 0; n < 8; n = n+1)begin
+				assign i[n] = y[n] ? x << n : '0; //<< is left shift
+				
 			end
-			else begin
-				i[n] = '0;
-			end
+		endgenerate
+		
+		
+		/*if(y[0] == 1)begin
+			assign i[0] = x; //<< is left shift
 		end
+		else begin
+			assign i[0] = '0;
+		end
+
+		if(y[1] == 1)begin
+			assign i[1] = x << 1; //<< is left shift
+		end
+		else begin
+			assign i[1] = '0;
+		end
+
+		if(y[2] == 1)begin
+			assign i[2] = x << 2; //<< is left shift
+		end
+		else begin
+			assign i[2] = '0;
+		end
+
+		if(y[3] == 1)begin
+			assign i[3] = x << 3; //<< is left shift
+		end
+		else begin
+			assign i[3] = '0;
+		end
+
+		if(y[4] == 1)begin
+			assign i[4] = x << 4; //<< is left shift
+		end
+		else begin
+			assign i[4] = '0;
+		end
+
+		if(y[5] == 1)begin
+			assign i[5] = x << 5; //<< is left shift
+		end
+		else begin
+			assign i[5] = '0;
+		end
+
+		if(y[6] == 1)begin
+			assign i[6] = x << 6; //<< is left shift
+		end
+		else begin
+			assign i[6] = '0;
+		end
+
+		if(y[7] == 1)begin
+			assign i[7] = x << 7; //<< is left shift
+		end
+		else begin
+			assign i[7] = '0;
+		end*/
+		//end
+
+		CSA csa_01 (.w(i[0]), .x(i[1]), .y(i[2]), .cin(1'b0), .sum(s_lev[0][1]), .cout(c_lev[0][1]));		
 		
-		CSA csa_01 (.w(i[0]), .x(i[1]), .y(i[2]), .cin(1'b0), .sum(s_lev[0][1]), .cout(c_lev[0][1]),);		
-		
-		CSA csa_02 (.w(i[3]), .x(i[4]), .y(i[5]), .cin(1'b0), .sum(s_lev[0][2]), .cout(c_lev[0][2]),);
+		CSA csa_02 (.w(i[3]), .x(i[4]), .y(i[5]), .cin(1'b0), .sum(s_lev[0][2]), .cout(c_lev[0][2]));
 		
 		assign c_lev[0][1] = c_lev[0][1] << 1;
-		CSA csa_11 (.w(s_lev[0][1]), .x(c_lev[0][1]), .y(s_lev[0][2]), .cin(1'b0), .sum(s_lev[1][1]), .cout(c_lev[1][1]),);
+		CSA csa_11 (.w(s_lev[0][1]), .x(c_lev[0][1]), .y(s_lev[0][2]), .cin(1'b0), .sum(s_lev[1][1]), .cout(c_lev[1][1]));
 		
 		assign c_lev[0][2] = c_lev[0][2] << 1;
-		CSA csa_12 (.w(c_lev[0][2]), .x(i[6]), .y(i[7]), .cin(1'b0), .sum(s_lev[1][2]), .cout(c_lev[1][2]),);	
+		CSA csa_12 (.w(c_lev[0][2]), .x(i[6]), .y(i[7]), .cin(1'b0), .sum(s_lev[1][2]), .cout(c_lev[1][2]));	
 		
 		assign c_lev[1][1] = c_lev[1][1] << 1;
-		CSA csa_21 (.w(c_lev[1][1]), .x(s_lev[1][1]), .y(s_lev[1][2]), .cin(1'b0), .sum(s_lev[2][1]), .cout(c_lev[2][1]),);	
+		CSA csa_21 (.w(c_lev[1][1]), .x(s_lev[1][1]), .y(s_lev[1][2]), .cin(1'b0), .sum(s_lev[2][1]), .cout(c_lev[2][1]));	
 		
 		assign c_lev[2][1] = c_lev[2][1] << 1;
 		assign c_lev[1][2] = c_lev[1][2] << 1;
-		CSA csa_31 (.w(s_lev[2][1]), .x(c_lev[2][1]), .y(c_lev[1][2]), .cin(1'b0), .sum(s_lev[3][1]), .cout(c_lev[3][1]),);
+		CSA csa_31 (.w(s_lev[2][1]), .x(c_lev[2][1]), .y(c_lev[1][2]), .cin(1'b0), .sum(s_lev[3][1]), .cout(c_lev[3][1]));
 		
 		assign c_lev[3][1] = c_lev[1][2] << 1;
-		CSA csa_41 (.w(s_lev[3][1]), .x(c_lev[3][1]), .y(16'b0), .cin(1'b0), .sum(out), .cout(c_lev[3][2]),);		
+		CSA csa_41 (.w(s_lev[3][1]), .x(c_lev[3][1]), .y(16'b0), .cin(1'b0), .sum(out), .cout(c_lev[3][2]));		
 		
 
 endmodule
@@ -89,4 +148,13 @@ module CSA (
 	
 endmodule
 
+// Full adder cell
+module fa
+(
+	input x, y, cin,
+	output s, cout
+);
+	assign s = x ^ y ^ cin;
+	assign cout = x&y | x&cin | y&cin;
+endmodule
 

@@ -7,41 +7,87 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/mihik/DOcuments/ECE342/ECE342/lab3/part2
+dC:/Users/mihik/DOcuments/ECE342/ECE342/lab3/part2
 vCSA
-Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1643854406
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1643988511
 !i10b 1
-!s100 X7DT81Mb4;3Ba^TDQ_JjC2
-IzCnhUP]inhjc>7`_e[fIF2
-Z3 VDg1SIo80bB@j0V0VzS_@n1
-Z4 !s105 part2_sv_unit
+!s100 ?38OXS^=5=ci3fG<<>PAh1
+I037g@:I`?RU@UZbH4=kS:1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 !s105 part2_sv_unit
 S1
-R0
-Z5 w1643854404
+Z4 dC:/Users/mihik/DOcuments/ECE342/eCE342/lab3/part2
+Z5 w1643988469
 Z6 8part2.sv
 Z7 Fpart2.sv
-L0 30
+L0 106
 Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1643854406.000000
-Z10 !s107 part2.sv|
-Z11 !s90 -reportprogress|300|part2.sv|
+Z9 !s108 1643988511.000000
+Z10 !s107 tb.sv|part2.sv|
+Z11 !s90 -reportprogress|300|part2.sv|tb.sv|
 !i113 1
 Z12 tCvgOpt 0
 n@c@s@a
-vwallace_mult
-R1
-R2
-!i10b 1
-!s100 m3Kf6P5>X`En=MF9[9N<`0
-ILeLE@=3nBd_MM?X0mS>;<2
-R3
-R4
-S1
+vfa
 R0
+R1
+!i10b 1
+!s100 Xi;FIj<<d:BN]1MO82^bm2
+I;DYIVe8G3a;F>UMD7C7fM1
+R2
+R3
+S1
+R4
+R5
+R6
+R7
+L0 152
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+vtb
+R0
+R1
+!i10b 1
+!s100 MnkKB53ekjH7=[_T]gIa63
+I_D1<0_`d@88BPj16>a9^R2
+R2
+!s105 tb_sv_unit
+S1
+R4
+w1643988506
+8tb.sv
+Ftb.sv
+L0 5
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+vwallace_mult
+R0
+R1
+!i10b 1
+!s100 XEmRF48NSR9c@K?gm1UPK2
+I@[?j5J9XB6L]75Ggd@9M31
+R2
+R3
+S1
+R4
 R5
 R6
 R7

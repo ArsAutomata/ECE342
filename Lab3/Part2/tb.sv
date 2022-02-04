@@ -13,7 +13,7 @@ module tb();
  wire [(8+8-1):0]product;// From mul1 of cla_multiplier.v
  // End of automatics
 
- mult_csm mul1(
+ wallace_mult mul1(
     .out(product[15:0]),
     .x(multicand[7:0]),
     .y(multiplier[7:0])
