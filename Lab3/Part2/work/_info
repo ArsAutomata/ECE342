@@ -10,7 +10,7 @@ cModel Technology
 dC:/Users/mihik/DOcuments/ECE342/ECE342/lab3/part2
 vCSA
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1643988511
+Z1 !s110 1643991635
 !i10b 1
 !s100 ?38OXS^=5=ci3fG<<>PAh1
 I037g@:I`?RU@UZbH4=kS:1
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1643988511.000000
+Z9 !s108 1643991635.000000
 Z10 !s107 tb.sv|part2.sv|
 Z11 !s90 -reportprogress|300|part2.sv|tb.sv|
 !i113 1
@@ -59,13 +59,13 @@ vtb
 R0
 R1
 !i10b 1
-!s100 MnkKB53ekjH7=[_T]gIa63
-I_D1<0_`d@88BPj16>a9^R2
+!s100 hQnknRYOIF?[7hi2QM_8A2
+I1_V:;kEO2=:F^DL6=8OLO0
 R2
 !s105 tb_sv_unit
 S1
 R4
-w1643988506
+w1643991630
 8tb.sv
 Ftb.sv
 L0 5

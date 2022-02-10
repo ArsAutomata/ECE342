@@ -50,7 +50,12 @@ module tb();
 		multiplier = 8'd10;
  
 		#(`DELAY) //correct
+		multicand = 8'd12;
+		multiplier = 8'd8;
+
+#(`DELAY) //correct
 		multicand = 8'd156;
 		multiplier = 8'd140;
+
 	end
 endmodule
