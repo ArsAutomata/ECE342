@@ -7,18 +7,18 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/mihik/documents/ece342/eCE342/lab4
+dC:/Users/mihik/documents/ece342/eCE342/lab4
 vfloat_mult
-Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1644531788
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1644559998
 !i10b 1
-!s100 _`YSjg5ZTF=DW3E9ZMeoR0
-I1GULzSR71BCT2L:MlbZTT2
-Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s100 FQ^^fhBmE749h6gZP^PXG2
+IFCBL?=MHf3LfS1:bd5k9<3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 lab4part1_sv_unit
 S1
-R0
-w1644531785
+Z3 dC:/users/mihik/documents/ece342/eCE342/lab4/part1
+w1644559879
 8lab4part1.sv
 Flab4part1.sv
 L0 1
@@ -26,22 +26,22 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1644531788.000000
+Z5 !s108 1644559998.000000
 Z6 !s107 tb.sv|lab4part1.sv|
 Z7 !s90 -reportprogress|300|lab4part1.sv|tb.sv|
 !i113 1
 Z8 tCvgOpt 0
 vtb
+R0
 R1
-R2
 !i10b 1
-!s100 gSKLST;:d@8Jj9FXV60bm3
-INH]3mNPRYgzbJiFo6L1m`1
-R3
+!s100 `^kj`<2Nm7:`AAIC:T<Gz2
+I`_i;hcK9H1R<<Q?LORJfb3
+R2
 !s105 tb_sv_unit
 S1
-R0
-w1644525369
+R3
+w1644559499
 8tb.sv
 Ftb.sv
 L0 4
