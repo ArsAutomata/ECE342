@@ -64,20 +64,20 @@ module float_mult(
 		
 		/* Special Cases */
 		if(mantissa_product_shift == 23'b0) begin//zero
-			assign zero = 1'b1;
+			zero = 1'b1;
 		end
 
 		if(x[30:23] + y[30:23] < 8'b01111111) begin//underflow
-			assign exponent_shift = 8'b00000000;
-			assign underflow = 1'b1;
+			exponent_shift = 8'b00000000;
+			underflow = 1'b1;
 		end
 		else if(x[30:23] + y[30:23] > 8'b11111110)begin //overflow
-			assign exponent_shift = 8'b11111111;
-			assign mantissa_product_shift = 23'b0;
-			assign overflow = 1'b1;
+			exponent_shift = 8'b11111111;
+			mantissa_product_shift = 23'b0;
+			overflow = 1'b1;
 		end
-
-		if ((x[30:23] == 'd255 && y == 'b0) || (y[30:23] == 'd255 && x == 'b0))begin
+		//nan
+		if ((x[30:23] == 8'b11111111 && y[30:0] == 31'b0) || (y[30:23] == 8'b11111111 && x[30:0] == 31'b0))begin
 			nan = 1'b1;
 			exponent_shift = 8'b11111111;
 			mantissa_product_shift = 23'b0;
