@@ -1,0 +1,51 @@
+module avalon_fp_mult
+(
+	input clk,
+	input reset,
+	input [2:0] avs_s1_address,
+	input avs_s1_read,
+	input avs_s1_write,
+	input [31:0] avs_s1_writedata,
+	output logic [31:0] avs_s1_readdata,
+	output logic avs_s1_waitrequest
+);
+	// 1. Create the signals to connect to the AVS peripheral registers. 	
+	
+	// 2. This instantiates your FP multiplier. Make sure the .qip file is added to your project. 
+	fp_mult fpm
+	(
+		.clk_en() ,		
+		.clock(clk) ,				
+		.dataa() ,			
+		.datab() ,			
+		.nan() ,			
+		.overflow() ,	
+		.result() ,			
+		.underflow() ,
+		.zero() 			
+	);
+
+	/* 3. Write code to handle the read and write operations.
+		  It is best to start with write. Using the module signals,
+		  you should determine when a write operation occurs and what 
+		  register is being written to. 
+	*/
+	
+	// Avalon write
+	always_ff @ (posedge clk or posedge reset) begin
+		if (reset) begin
+			// Make sure to reset all your signals. 
+	end
+
+	/* 4. Now write the code for a read operation. 
+		  This should be much simpler than write as 
+		  you should just need a single mux. 
+    */
+
+	
+	/* 5. It is best to deal with the single cycle case first and then
+	change your design to work with waitrequest. 
+	*/
+
+
+endmodule
