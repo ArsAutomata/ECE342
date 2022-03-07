@@ -15,10 +15,12 @@ module avalon_fp_mult
 	logic s; //start bit
 	logic [31:0] result;
 	logic [3:0] status; //special cases (nan, zero, etc)
+	logic [3:0] delay;
 	
 	// 2. This instantiates your FP multiplier. Make sure the .qip file is added to your project. 
 	fp_mult fpm
 	(
+		.aclr(1'b0),
 		.clk_en(s) ,		
 		.clock(clk) ,				
 		.dataa(op1[31:0]) ,			
@@ -42,19 +44,31 @@ module avalon_fp_mult
 			op1 <= 32'b00000000000000000000000000000000;
 			op2 <= 32'b00000000000000000000000000000000;
 			s <= 1'b0;
-			result <= 32'b00000000000000000000000000000000;
-			status <= 4'b0000;
+			delay <= 4'b000;
 			// Make sure to reset all your signals. 
 		end
-		if(avs_s1_write) begin
-			if(avs_s1_address == 3'b000) begin //op1
-				op1 <= avs_s1_writedata;
-			end
-			else if(avs_s1_address == 3'b001) begin //op2
-				op2 <= avs_s1_writedata;
-			end
-			else if(avs_s1_address == 3'b010) begin //start bit
-				s <= avs_s1_writedata[0];
+		
+		else if(delay != 4'b0000) begin
+			avs_s1_waitrequest <= 1'b1;
+			delay <= delay - 1'b1;
+		end
+		
+		else if(delay == 4'b000) begin
+			avs_s1_waitrequest <= 1'b0;
+			s <= 1'b0;
+			if (avs_s1_write) begin
+				if(avs_s1_address == 3'b000) begin //op1
+					op1 <= avs_s1_writedata;
+				end
+				else if(avs_s1_address == 3'b001) begin //op2
+					op2 <= avs_s1_writedata;
+				end
+				else if(avs_s1_address == 3'b010) begin //start bit
+					s <= avs_s1_writedata[0];
+					avs_s1_waitrequest <= (avs_s1_writedata[0] == 1'b1) ? 1'b1 : 1'b0;
+					delay <= (avs_s1_writedata[0] == 1'b1) ? 4'b1011 : 4'b0000;
+					//delay 11 cycles
+				end
 			end
 		end
 			
@@ -67,6 +81,7 @@ module avalon_fp_mult
 
 	 //send data
 	 always_comb begin
+		avs_s1_readdata = 32'bx;
 		if(avs_s1_address == 3'b000) begin //op1
 			avs_s1_readdata = op1;
 		end
@@ -77,7 +92,6 @@ module avalon_fp_mult
 			avs_s1_readdata = s;
 		end
 		else if(avs_s1_address == 3'b011) begin //result
-			avs_s1_readdata = clk;
 			avs_s1_readdata = result;
 		end
 		else if(avs_s1_address == 3'b100) begin //status

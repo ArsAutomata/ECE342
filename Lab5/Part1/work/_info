@@ -7,18 +7,18 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/mihik/Documents/eCE342/eCE342/Lab5/Part1
+dC:/Users/mihik/Documents/eCE342/eCE342/Lab5/Part1
 vapc_tb
-Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1646284202
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1646408036
 !i10b 1
-!s100 W:dUkki@JGF`<d3mTK9^A0
-IDOjPC=6a=MgZDBIB`O<jR2
-Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s100 94oB6BlYzC_2?1V?9RgXM1
+IL4zQ=;m0??VmHjlcHWfhj0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 apc_tb_updated_sv_unit
 S1
-R0
-w1646284199
+Z3 dC:/users/mihik/DOcuments/eCE342/eCE342/lab5/part1
+w1646407649
 8apc_tb_updated.sv
 Fapc_tb_updated.sv
 L0 2
@@ -26,22 +26,22 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1646284202.000000
+Z5 !s108 1646408036.000000
 Z6 !s107 fp_mult.v|apc_tb_updated.sv|apc_kit.sv|
 Z7 !s90 -reportprogress|300|apc_kit.sv|apc_tb_updated.sv|fp_mult.v|
 !i113 1
 Z8 tCvgOpt 0
 vavalon_fp_mult
+R0
 R1
-R2
 !i10b 1
-!s100 =8d?P^PN>Om6TYC_l2zS>3
-IEJLGSIjb9?AOkE0MIb7_41
-R3
+!s100 92ld0WMO:kC@0OI;j7DZ>3
+Ii1O`GJzXH^kV[I>hiEiBD3
+R2
 !s105 apc_kit_sv_unit
 S1
-R0
-w1646283779
+R3
+w1646407724
 8apc_kit.sv
 Fapc_kit.sv
 L0 1
@@ -55,12 +55,12 @@ R7
 !i113 1
 R8
 vfp_mult
-R2
+R1
 !i10b 1
 !s100 c]h_G@MnkB?BM?=_T:HE02
 IRDOH1X0cP]WZ`oR:Nz[YJ1
+R2
 R3
-R0
 Z9 w1646267691
 Z10 8fp_mult.v
 Z11 Ffp_mult.v
@@ -75,12 +75,12 @@ R7
 !i113 1
 R8
 vfp_mult_altfp_mult_her
-R2
+R1
 !i10b 1
 !s100 @_IA1<HVSc>B@MfLX>XdG1
 ICOcn=bono`5;ne04Y4N<G3
+R2
 R3
-R0
 R9
 R10
 R11

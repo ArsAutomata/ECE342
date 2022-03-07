@@ -72,19 +72,19 @@ module apc_tb();
 		start_time = $realtime;
 		
 		// This means 'wait until avs_readdata goes to 0'. 
-		//wait (avs_readdata == 0);
+		wait (avs_waitrequest == 0);
 		
 		// How long did it take for waitrequest to go to 0? 
 		time_taken = $realtime - start_time;
 			
 		if (time_taken < 22) begin
-			//$display("ERROR: The waitrequest was de-asserted too soon.");
-			//$stop;
+			$display("ERROR: The waitrequest was de-asserted too soon.");
+			$stop;
 		end
 			
 		if (time_taken > 25) begin
-			//$display("ERROR: The waitrequest was held high for too long");
-			//$stop;
+			$display("ERROR: The waitrequest was held high for too long");
+			$stop;
 		end		
 		
 		#2//was 2 before
@@ -101,7 +101,7 @@ module apc_tb();
 	endtask        
     
     initial begin
-        #20
+        #11
         reset = 0;
 		
 		apc_test(32'h4059999A, 32'h4194CCCD, 32'h427CF5C3); // 3.4 * 18.6 = 63.24
