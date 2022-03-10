@@ -22,11 +22,11 @@ float FIXED_TO_FLOAT(fixed f){
 }
 
 fixed FIXED_MULT(fixed op1, fixed op2){
-
-    fixed f = op1*op2;
+    int shift = Q_N/2;
+    fixed f = (op1>>shift)*(op2>>shift);
 		// calculate the result of this multiplication
 		// and return it here.
-    return f>>Q_N;
+    return f >> (Q_N - (2*shift));
 }
 
 float calculate_error(float expected, float actual){
@@ -65,8 +65,8 @@ float calc_all_err(){
                     float resultf = FIXED_TO_FLOAT(resultx);
 
                     float err = calculate_error(op1f*op2f,resultf);
-                    if(err>100)
-                        printf("expected %f , actual %f \n",op1f*op2f,resultf);
+                    //if(err>100)
+                      //  printf("expected %f , actual %f \n",op1f*op2f,resultf);
                     sum_err += err;
                     count++;
                 }
