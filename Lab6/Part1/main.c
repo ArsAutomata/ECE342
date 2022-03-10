@@ -23,9 +23,20 @@ float FIXED_TO_FLOAT(fixed f){
 
 fixed FIXED_MULT(fixed op1, fixed op2){
 
+    fixed f = op1*op2;
 		// calculate the result of this multiplication
 		// and return it here.
-		return op1*op2*(2^(-Q_N));
+    return f>>Q_N;
+}
+
+float calculate_error(float expected, float actual){
+
+    float err = expected - actual;
+    if(err < 0){
+        return -err;
+    }
+    return err;
+
 }
 
 // For each of these datasets, find the Qm.n representation that minimizes the error.
@@ -35,11 +46,41 @@ float datasets[4][10] = {{429.53605647241415, 54.051172931707704, 163.5868287087
 {0.07402272300410051, 4.0733941539004475, 2.7780734593791974, 4.647096565449923, 4.760313581913216, 1.0700010090755887, 5.999940306877167, 0.09692246551677397, 6.232799120276484, 4.409500084502266},
 {18.922375022588515, 9.976071114431022, 1.1578493397893121, 16.946195430873466, 13.258356573949856, 22.789397104263998, 4.467453001844939, 28.000955923708002, 9.65995387643512, 27.66319226833275}};
 
-int main(){
-    SET_Q_FORMAT(16,15);
+float calc_all_err(){
+    float sum_err = 0;
+    int count = 0;
 
-    float op1f = datasets[0][0];
-    float op2f = datasets[0][1];
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<10; j++){
+            for(int m = 0; m<4; m++){
+                for(int n = 0; n<10; n++){
+                    float op1f = datasets[i][j];
+                    float op2f = datasets[m][n];
+
+                    fixed op1x = FLOAT_TO_FIXED(op1f);
+                    fixed op2x = FLOAT_TO_FIXED(op2f);
+
+                    fixed resultx = FIXED_MULT(op1x,op2x);
+
+                    float resultf = FIXED_TO_FLOAT(resultx);
+
+                    float err = calculate_error(op1f*op2f,resultf);
+                    if(err>100)
+                        printf("expected %f , actual %f \n",op1f*op2f,resultf);
+                    sum_err += err;
+                    count++;
+                }
+            }
+        }
+    }
+    return sum_err/count;
+}
+
+int main(){
+    /*SET_Q_FORMAT(24,7);
+
+    float op1f = datasets[1][3];
+    float op2f = datasets[2][6];
 
     fixed op1x = FLOAT_TO_FIXED(op1f);
     fixed op2x = FLOAT_TO_FIXED(op2f);
@@ -48,8 +89,26 @@ int main(){
 
 	float resultf = FIXED_TO_FLOAT(resultx);
 
-    printf("%.14f\n", op1f*op2f);//actual
-    printf("%d\n", resultx);//fixed result
-    printf("%.14f\n", resultf); //float result
+	float errorf = calc_all_err();
+//calculate_error(op1f*op2f,resultf);
+    //printf("expected: %.14f\n", op1f*op2f);//expected
+    //printf("result: %.14f\n", resultf); //float result
+    printf("err: %f\n", errorf);*/
+
+    SET_Q_FORMAT(24,7);
+	float errorf = calc_all_err();
+    printf("err(%d,%d): %f\n", 24, 7, errorf);
+
+    SET_Q_FORMAT(16,15);
+	 errorf = calc_all_err();
+    printf("err(%d,%d): %f\n", 16, 15, errorf);
+
+    SET_Q_FORMAT(8,23);
+	 errorf = calc_all_err();
+    printf("err(%d,%d): %f\n", 8, 23, errorf);
+
+    SET_Q_FORMAT(4,27);
+	 errorf = calc_all_err();
+    printf("err(%d,%d): %f\n", 4, 27, errorf);
 	return 0;
 }

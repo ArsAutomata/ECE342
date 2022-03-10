@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1646872317 source:c:\users\mihik\documents\ece342\ece342\lab6\part1\main.c
+	<stdio.h>
+	<math.h>
+
