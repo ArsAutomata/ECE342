@@ -38,15 +38,18 @@ float datasets[4][10] = {{429.53605647241415, 54.051172931707704, 163.5868287087
 int main(){
     SET_Q_FORMAT(16,15);
 
-    float y = FIXED_MULT(datasets[0][0],datasets[0][1]);
-    float op1 = datasets[0][0];
-    float op2 = datasets[0][1];
+    float op1f = datasets[0][0];
+    float op2f = datasets[0][1];
 
-    fixed z  = FLOAT_TO_FIXED(y);
-	float a  = FIXED_TO_FLOAT(z);
+    fixed op1x = FLOAT_TO_FIXED(op1f);
+    fixed op2x = FLOAT_TO_FIXED(op2f);
 
-    printf("%.14f\n", datasets[0][0]*datasets[0][1]);//actual
-    printf("%d\n", z);//fixed result
-    printf("%.14f\n", a); //float result
+    fixed resultx = FIXED_MULT(op1x,op2x);
+
+	float resultf = FIXED_TO_FLOAT(resultx);
+
+    printf("%.14f\n", op1f*op2f);//actual
+    printf("%d\n", resultx);//fixed result
+    printf("%.14f\n", resultf); //float result
 	return 0;
 }
