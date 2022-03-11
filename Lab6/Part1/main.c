@@ -85,8 +85,11 @@ void EMA_FIXED_CALC(){
         printf("errors for EMA set %d: ", i+1);
         for(int k = 0; k<10; k++){
             curr_err = FIXED_TO_FLOAT(EMA_fixed[i][k])-EMA_float[i][k];
+            if (curr_err < 0){
+                curr_err = curr_err*(-1);
+            }
             printf("%f ", curr_err);
-            total_err = total_err + (FIXED_TO_FLOAT(EMA_fixed[i][k])-EMA_float[i][k]);
+            total_err = total_err + curr_err;
         }
         printf("\ntotal error for set = %f\n", total_err/10.0);
     }
