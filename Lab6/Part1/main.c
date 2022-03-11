@@ -61,6 +61,19 @@ void PRINT_Q_SET(){
                 printf("\n");
             }
         }
+        
+        float curr_err;
+        float total_err = 0; 
+        printf("conversion error: ");
+        for(int k = 0; k<10; k++){
+            curr_err = FIXED_TO_FLOAT(FLOAT_TO_FIXED(datasets[i][k]))-datasets[i][k];
+            if (curr_err < 0){
+                curr_err = curr_err*(-1);
+            }
+            printf("%f ", curr_err);
+            total_err = total_err + curr_err;
+        }
+        printf("\ntotal error for set = %f\n\n", total_err/10.0);
     }
     
 }
@@ -91,7 +104,7 @@ void EMA_FIXED_CALC(){
             printf("%f ", curr_err);
             total_err = total_err + curr_err;
         }
-        printf("\ntotal error for set = %f\n", total_err/10.0);
+        printf("\ntotal error for set = %f\n\n", total_err/10.0);
     }
 }
 
@@ -130,6 +143,7 @@ int main(){
                 printf("\n");
             }
         }
+        printf("\n");
     }
     
     printf("\n___________EMA Q4,27 sets___________\n");
