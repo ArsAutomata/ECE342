@@ -38,7 +38,10 @@ fixed FIXED_MULT(fixed op1, fixed op2){
 fixed FIXED_DIVIDE(fixed op1, fixed op2){
     // op1/op2
 	int shift = Q_N/2;
-	//printf("shift: %d\n",shift);
+	if(op2==0){
+        //printf("DIVIDE BY ZERO: %d/%d\n",op1,op2);
+        return 0;
+    }
     fixed f = (op1<<shift)/(op2);
     //printf("%d/%d \n", op1<<shift, op2);
     //printf("result: %d\n", f << (Q_N - (shift)));
@@ -60,6 +63,8 @@ float datasets[4][10] = {{429.53605647241415, 54.051172931707704, 163.5868287087
 {120069.86565516416, 21469.916452351572, 193920.6012388812, 201536.93026739376, 29439.382625284743, 155926.95756308752, 244118.3902060167, 21616.645699486355, 113960.0450136428, 125626.1350580619},
 {0.07402272300410051, 4.0733941539004475, 2.7780734593791974, 4.647096565449923, 4.760313581913216, 1.0700010090755887, 5.999940306877167, 0.09692246551677397, 6.232799120276484, 4.409500084502266},
 {18.922375022588515, 9.976071114431022, 1.1578493397893121, 16.946195430873466, 13.258356573949856, 22.789397104263998, 4.467453001844939, 28.000955923708002, 9.65995387643512, 27.66319226833275}};
+
+float sine_dataset[10] = {-3.14, -2.512, -1.884, -1.256, -0.628, 0.628, 1.256, 1.884, 2.512, 3.14};
 
 void PRINT_Q_SET(){
     float all_set_err = 0;
@@ -137,7 +142,8 @@ fixed fixed_factorial(fixed x){
     fixed one = FLOAT_TO_FIXED((float)1.0);
     fixed result = one;
 
-    while(x > 0){
+    while(x >= 1){//test issue here(in case of decimal value)
+            //used to be 0 before
         result = FIXED_MULT(result, x);
         x = x - one;
     }
@@ -152,15 +158,15 @@ fixed sin_func_fixed(fixed x, int num_terms){
 
     for (int i = 0; i < num_terms; i++){
         fixed n = FLOAT_TO_FIXED((float)i);
-        fixed exponent = FIXED_MULT(FLOAT_TO_FIXED((float)2.0),n) + 1;
+        fixed exponent = FIXED_MULT(FLOAT_TO_FIXED((float)2.0f),n) + FLOAT_TO_FIXED(1.0f);
 
         fixed numer = fixed_exponent(x, exponent);
         fixed denom = fixed_factorial(exponent);
-
-        fixed term;
+        //printf("zero?: %d, %d/%d, %d\n", i, numer, denom, exponent);
+        fixed term = FIXED_DIVIDE(numer,denom);
 
         if(i%2 != 0){
-            term = FIXED_MULT(term, FLOAT_TO_FIXED((float)-1.0));
+            term = FIXED_MULT(term, FLOAT_TO_FIXED((float)-1.0f));
         }
         sum+=term;
     }
@@ -196,17 +202,24 @@ float sine_func_float(float x, int numterms){
 void test_q_format(){
     for(int i = 1; i < 31; i++){
         SET_Q_FORMAT(i,31-i);
+        float set_err = 0;
         printf("\nQ(%d,%d)-----------------------------------------\n", i, 31-i);
-        PRINT_Q_SET();
+        for(int j = 0; j < 10; j++){
+            float actual = FIXED_TO_FLOAT(sin_func_fixed(FLOAT_TO_FIXED(sine_dataset[j]), 13));
+            float expected = sin(sine_dataset[j]);
+            set_err += abs(actual - expected);
+        }
+        printf("set err: %f", set_err/10);
+        //PRINT_Q_SET();
     }
 }
 
 int main(){
     SET_Q_FORMAT(18,13);
-    float x = -6.28;
+    float x = -0.5;
     int numterms = 13;
-    float z = 5.0;
-    float w = 2.0;
+    float z = 21.0;
+    float w = 4.0;
     fixed y = FLOAT_TO_FIXED(z);
     fixed exp = FLOAT_TO_FIXED(w);
 
@@ -216,9 +229,11 @@ int main(){
 
 	printf("FIXED_DIVIDE\nexpected: %f\nactual: %f\n\n", z/w, FIXED_TO_FLOAT(FIXED_DIVIDE(y,exp)) );
 
+	printf("FIXED_SINE\nexpected: %f\nactual: %f\n\n", sin(x), FIXED_TO_FLOAT(sin_func_fixed(FLOAT_TO_FIXED(x),numterms)));
+
 	printf("FLOAT_SINE\nexpected: %f\nactual: %f\n\n", sin(x),sine_func_float(x, numterms));
 
-	//test_q_format();//Q(18,13)
+	test_q_format();//Q(18,13)
 	return 0;
     //FIXED_TO_FLOAT
     //FIXED_MULT
