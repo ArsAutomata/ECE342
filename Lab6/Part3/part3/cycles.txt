@@ -1,0 +1,23 @@
+floating point hardware disabled
+Fixed cycles:1582.869995
+Fixed error:6.745726
+Float Cycles:11953.509766
+Float error:1.413082
+
+floating point hardware enabled
+Fixed cycles:1431.069946
+Fixed error:6.745726
+Float Cycles:1985.869995
+Float error:1.413082
+
+
+questions:
+2. is this last last lab to get data
+3. how to get area 
+
+inferences = 
+error is 1% -> something is wrong 
+
+"ld add the area for the Floating point 2 hardware to the area of the NIOS IIf CPU."
+- if in use use it
+- depends on data for
