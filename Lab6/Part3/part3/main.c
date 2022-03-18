@@ -10,6 +10,7 @@ int F_ONE = 0;
 
 float EMA_float[4][10];
 fixed EMA_fixed[4][10];
+float q_errors[31];
 
 void SET_Q_FORMAT(int M, int N){
     Q_M = M;
@@ -37,10 +38,10 @@ fixed FIXED_MULT(fixed op1, fixed op2){
 fixed FIXED_DIVIDE(fixed op1, fixed op2){
     // op1/op2
 	int shift = Q_N/2;
-	printf("shift: %d\n",shift);
+	//printf("shift: %d\n",shift);
     fixed f = (op1<<shift)/(op2);
-    printf("%d/%d \n", op1<<shift, op2);
-    printf("f shift: %d\n", f << (Q_N - (shift)));
+    //printf("%d/%d \n", op1<<shift, op2);
+    //printf("result: %d\n", f << (Q_N - (shift)));
 		// calculate the result of this division
 		// and return it here.
     return f << (Q_N - (shift));
@@ -61,31 +62,33 @@ float datasets[4][10] = {{429.53605647241415, 54.051172931707704, 163.5868287087
 {18.922375022588515, 9.976071114431022, 1.1578493397893121, 16.946195430873466, 13.258356573949856, 22.789397104263998, 4.467453001844939, 28.000955923708002, 9.65995387643512, 27.66319226833275}};
 
 void PRINT_Q_SET(){
+    float all_set_err = 0;
     for(int i = 0; i<4; i++){
 
-        printf("set %d: ", i+1);
+        /*printf("set %d: ", i+1);
 
         for(int j = 0; j<10; j++){
             printf("%d ", FLOAT_TO_FIXED(datasets[i][j]));
             if(j == 9){
                 printf("\n");
             }
-        }
+        }*/
 
         float curr_err;
         float total_err = 0;
-        printf("conversion error: ");
+        //printf("conversion error: ");
         for(int k = 0; k<10; k++){
             curr_err = FIXED_TO_FLOAT(FLOAT_TO_FIXED(datasets[i][k]))-datasets[i][k];
             if (curr_err < 0){
                 curr_err = curr_err*(-1);
             }
-            printf("%f ", curr_err);
+            //printf("%f ", curr_err);
             total_err = total_err + curr_err;
         }
-        printf("\ntotal error for set = %f\n\n", total_err/10.0);
+        printf("total error for set %d = %f\n", i, total_err/10.0);
+        all_set_err+=total_err/10.0;
     }
-
+    printf("total error = %f\n\n", all_set_err);
 }
 
 void EMA_FIXED_CALC(){
@@ -141,6 +144,8 @@ fixed fixed_factorial(fixed x){
     return result;
 }
 
+//computes sin(x) using taylor approximation
+//num_terms is the number of terms in the taylor polynomial
 fixed sin_func_fixed(fixed x, int num_terms){
     //fixed numterms = FLOAT_TO_FIXED((float)terms);
     fixed sum = 0;
@@ -160,9 +165,6 @@ fixed sin_func_fixed(fixed x, int num_terms){
         sum+=term;
     }
     return sum;
-    //FIXED_TO_FLOAT
-    //FIXED_MULT
-    //FLOAT_TO_FIXED
 }
 
 float float_factorial(float x){
@@ -174,6 +176,8 @@ float float_factorial(float x){
     return result;
 }
 
+//computes sin(x) using taylor approximation
+//numterms is the number of terms in the taylor polynomial
 float sine_func_float(float x, int numterms){
     float sum = 0;
     for (int n = 0; n < numterms; n++){
@@ -188,8 +192,17 @@ float sine_func_float(float x, int numterms){
     return sum;
 }
 
+//tests every possible q format
+void test_q_format(){
+    for(int i = 1; i < 31; i++){
+        SET_Q_FORMAT(i,31-i);
+        printf("\nQ(%d,%d)-----------------------------------------\n", i, 31-i);
+        PRINT_Q_SET();
+    }
+}
+
 int main(){
-    SET_Q_FORMAT(24,31-24);
+    SET_Q_FORMAT(18,13);
     float x = -6.28;
     int numterms = 13;
     float z = 5.0;
@@ -201,10 +214,14 @@ int main(){
 
     printf("FIXED_FACTORIAL\nexpected: %f\nactual: %f\n\n", float_factorial(z),FIXED_TO_FLOAT(fixed_factorial(y)) );
 
-	printf("FIXED_DIVIDE\nexpected: %f\nactual: %d\n\n", z/w, FIXED_DIVIDE(y,exp) );
+	printf("FIXED_DIVIDE\nexpected: %f\nactual: %f\n\n", z/w, FIXED_TO_FLOAT(FIXED_DIVIDE(y,exp)) );
 
 	printf("FLOAT_SINE\nexpected: %f\nactual: %f\n\n", sin(x),sine_func_float(x, numterms));
 
+	//test_q_format();//Q(18,13)
 	return 0;
+    //FIXED_TO_FLOAT
+    //FIXED_MULT
+    //FLOAT_TO_FIXED
 
 }
